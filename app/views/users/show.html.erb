@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>The Gossip Project - User</title>
+    </head>
+
+    <body>
+    <center>
+    <div class="card mb-4 box-shadow" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Gossip Profil <%=@user_searched.pseudo%></h5>
+            
+            <p>Prénom : <%=@user_searched.first_name %></p>
+            <p>Nom : <%=@user_searched.last_name %></p>
+            <p>Description : <%= @user_searched.description %></p>
+            <p>Email : <%= @user_searched.email %></p>
+            <p>Ville :
+                <% if !@user_searched.city_id.nil? %>
+                    <%= link_to city_path(@user_searched.city_id) do %> 
+                        <%= @user_searched.city.name %>
+                    <% end %>
+                <% end %>
+            </p>
+        </div>
+    </div>
+    </center>
+    </body>
+</html>

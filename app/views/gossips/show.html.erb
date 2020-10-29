@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>The Gossip Project - Gossip</title>
+</head>
+
+<body>
+
+  <!-- Présentation potin-->
+  <div class="row justify-content-md-center"> 
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h6 class="card-title mb-2 text-muted"><h1>Voici la page du potin n°<%= @gossip_searched.id %></h1></h6>
+      <p class="card-text"><p> Titre : <%= @gossip_searched.title%> </p>
+              
+      <p>Son auteur :
+        <%= link_to("#{@gossip_searched.id}/users/#{@gossip_searched.user_id}") do %> 
+          <%=@gossip_searched.user.pseudo %>
+        <% end %>
+      </p>
+    
+      <p>Le contenu du potin : <%= @gossip_searched.content %></p>
+      <p>Créé le : <%= @gossip_searched.created_at %></p>
+
+    
+      <p>Ville :
+      <% if !@gossip_searched.user.city_id.nil? %>
+        <%= link_to city_path(@gossip_searched.user.city_id) do %> 
+          <%= @gossip_searched.user.city.name %>
+        <% end %>
+      <% end %>
+      </p>
+
+      <p><%= @gossip_searched.likes.count %> <%= (@gossip_searched.likes.count) == 1 ? 'Like' : 'Likes'%> 
+        <% pre_like = @gossip_searched.likes.find { |like| like.user_id == current_user.id} %>
+        <% if pre_like %>
+          <%= button_to 'Unlike', gossip_like_path(@gossip_searched, pre_like), method: :delete, class:"btn btn-danger" %>
+        <% else %>
+          <%= button_to 'Like', gossip_likes_path(@gossip_searched), method: :post, class:"btn btn-success" %>
+        <% end %>
+      </p>
+    </div>
+
+        
+
+  <!-- Boutons gestion potin -->
+    <div class="row justify-content-md-center mb-2">
+      <a href="<%= new_gossip_comment_path(params[:id]) %>" class ="btn btn-primary">Commenter</a>     
+    </div>
+    </br>
+    
+    <% if @gossip_searched.user == current_user %>
+      <div class="row justify-content-md-center m-2">
+        <a href="<%= edit_gossip_path(params[:id]) %>" class ="btn btn-success">Mettre à jour le potin</a>     
+      </div> 
+            
+      <div class="row justify-content-md-center m-2">
+        <a href="<%= gossip_path(params[:id])%>" class ="btn btn-danger" data-confirm="Etes-vous sûr ?" data-method="DELETE">Supprimer le potin</a>     
+      </div> 
+      </br>
+    <% end %>
+    </div>
+  </div>
+  </br>
+  </br>
+
+
+  <!-- Commentaires -->
+  <h3 class="text-center"> Voici la liste des commentaires </h3>
+  </br>
+  </br>
+  <% @comments_linked.each do |comment| %>
+    <div class="row justify-content-md-center">
+      <p style="font-style: italic"> <%= comment.user.pseudo %> : <%= comment.content %></p>
+    </div>
+    
+    <% if comment.user == current_user %>
+      <div class="row justify-content-sm-center">
+        <a href="<%= edit_gossip_comment_path(@gossip_searched.id, comment.id) %>" class ="btn btn-outline-success btn-sm">Mettre à jour le commentaire</a>  
+      </div> 
+      </br>
+      <% end %>
+  <% end %>
+</body>
+</html>

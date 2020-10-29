@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>The Gossip Project - Ville</title>
+    </head>
+
+    <body>
+    <center>
+            <h2 text-center>Potins de <%=@city_searched.name%></h2>
+            <p>Zip Code : <%=@city_searched.zip_code %></p> </br>
+            <p>Nombre de potins : <%= @city_searched.gossips.count %>
+    
+    <% @list_gossips_this_city.each do |gossip| %>
+        <div class="card mb-4 box-shadow" style="width: 18rem;">
+            <h5 class="card-title text-center">Potin : <%=gossip.title%> </h5>
+            <p class="card-text text-center">
+                <%= link_to("/gossips/#{gossip.id}") do %>
+                    <%= gossip.user.pseudo %> : </br> <%= gossip.content %> </p>
+                <% end %>
+        </div>
+        </br>
+     <% end %>
+ 
+    
+    </center>
+    </body>
+</html>

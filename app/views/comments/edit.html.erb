@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8" />
+      <title>Éditer un commentaire</title>
+    </head>
+ 
+<body>
+
+  <div class="row justify-content-sm-center">
+    <div class="card" style="width: 18rem;">
+      <h6 class="card-title mb-2 text-muted"><h5>Commentaire du potin :<%= @this_comment.gossip.title %></h5></h6>
+      <p class="card-text"><%= @this_comment.gossip.content %></p>
+    </div>
+  </div>
+
+  <br />
+  <%= form_tag url_for(action: 'update'), method: "patch" do %>
+    <div class="row justify-content-sm-center" >
+      <%= label_tag 'Modifie ton commentaire :' %> <br />
+      <br />
+      <%= text_area_tag :comment_content %>
+      <br />
+    </div>
+    <br />
+    
+    <div class="row justify-content-sm-center" >
+      <%= submit_tag("Mettre à jour", :class =>"btn btn-outline-success btn-sm") %>
+    </div>  
+  <% end %>
+    <br />
+ 
+  <div class="row justify-content-sm-center">
+    <a href="<%= gossip_comment_path(params[:gossip_id], params[:id])%>" class ="btn btn-outline-danger btn-sm" data-confirm="Etes-vous sûr ?" data-method="DELETE">Supprimer le commentaire ?</a>     
+  </div> 
+</body>
+</html>

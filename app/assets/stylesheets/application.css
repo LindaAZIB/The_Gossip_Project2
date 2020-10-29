@@ -1,0 +1,85 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ 
+html {
+
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+	display : table;
+	width: 100%;
+	padding-bottom: 100px;
+}
+
+ .jumbotron {
+
+    background-image: url('https://news.ucr.edu/sites/g/files/rcwecm1816/files/styles/news_article_featured_l/public/2019-05/gossip%20pic.jpg');
+    min-height:600px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    margin-bottom: 0px;
+    color: white; /* Le texte sera affiché en blanc */
+    
+ }
+#gossips_container.container {
+
+	width: 60%;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.gossip_content {
+	
+    
+
+}
+a.list-group-item-action {
+padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    
+	border-style: solid;
+  	border-width: 1px;
+  	border-color: #D1D1D1;
+	margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.all_gossips_title {
+
+
+	margin-top: 30px;
+}
+
+/* footer */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    
+    color: #FFFFFF;
+}
+
+/* footer */

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Créer un commentaire</title>
+  </head>
+ 
+  <body>
+    <div class="row justify-content-md-center">
+      <div class="col mb-4 text-center">
+
+        <h1>Crée un commentaire pour le potin : <%= @new_comment.gossip.title%> </h1>
+        <p>Balance ton potin via le formulaire ci-dessous</p>
+        <br/>
+
+        <%= form_tag url_for(action: 'create'), method: "post" do %>
+          
+          
+          <%= label_tag 'Renseigne ton commentaire : ' %>
+          <%= text_area_tag :comment_content %>
+          <br/>
+
+          <br />
+          
+          <%= submit_tag("Publier le commentaire", :class =>"btn btn-primary") %>
+
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
